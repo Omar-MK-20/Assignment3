@@ -1,0 +1,182 @@
+[
+    {
+        "id": 0,
+        "email": "john@mail.com",
+        "password": "changeme",
+        "name": "Jhonhy",
+        "role": "customer",
+        "avatar": "https://i.imgur.com/LDOO4Qs.jpg",
+        "creationAt": "2025-12-16T08:14:43.000Z",
+        "updatedAt": "2025-12-16T09:42:20.000Z"
+    },
+    {
+        "id": 1,
+        "email": "maria@mail.com",
+        "password": "12345",
+        "name": "Maria",
+        "role": "customer",
+        "avatar": "https://i.imgur.com/DTfowdu.jpg",
+        "creationAt": "2025-12-16T08:14:43.000Z",
+        "updatedAt": "2025-12-16T08:14:43.000Z"
+    },
+    {
+        "id": 2,
+        "email": "admin@mail.com",
+        "password": "admin123",
+        "name": "Admin",
+        "role": "admin",
+        "avatar": "https://i.imgur.com/yhW6Yw1.jpg",
+        "creationAt": "2025-12-16T08:14:43.000Z",
+        "updatedAt": "2025-12-16T08:14:43.000Z"
+    },
+    {
+        "id": 3,
+        "email": "john1765878600661@test.com",
+        "password": "123456",
+        "name": "John",
+        "role": "customer",
+        "avatar": "https://i.pravatar.cc/150",
+        "creationAt": "2025-12-16T09:50:02.000Z",
+        "updatedAt": "2025-12-16T09:50:02.000Z"
+    },
+    {
+        "id": 4,
+        "email": "mirjalilazizov@gmail.com",
+        "password": "1234",
+        "name": "Mirkomil",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:07:37.000Z",
+        "updatedAt": "2025-12-16T10:07:37.000Z"
+    },
+    {
+        "id": 5,
+        "email": "mirjalilazizov@gmail.com",
+        "password": "1234",
+        "name": "Mirkomil",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:08:20.000Z",
+        "updatedAt": "2025-12-16T10:08:20.000Z"
+    },
+    {
+        "id": 6,
+        "email": "guest29@yahoo.com",
+        "password": "abv23345",
+        "name": "Guest",
+        "role": "admin",
+        "avatar": "https://api.lorem.space/image123/face1?w=640&h=480",
+        "creationAt": "2025-12-16T10:08:49.000Z",
+        "updatedAt": "2025-12-16T10:08:49.000Z"
+    },
+    {
+        "id": 7,
+        "email": "mirjalilazizov@gmail.com",
+        "password": "1234",
+        "name": "Mirkomil",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:09:27.000Z",
+        "updatedAt": "2025-12-16T10:09:27.000Z"
+    },
+    {
+        "id": 8,
+        "email": "mirjalilazizov@gmail.com",
+        "password": "1234",
+        "name": "Mirkomil",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:09:27.000Z",
+        "updatedAt": "2025-12-16T10:09:27.000Z"
+    },
+    {
+        "id": 9,
+        "email": "mirjalilazizov@gmail.com",
+        "password": "1234",
+        "name": "Mirkomil",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:10:48.000Z",
+        "updatedAt": "2025-12-16T10:10:48.000Z"
+    },
+    {
+        "id": 10,
+        "email": "mirjalilazizov@gmail.com",
+        "password": "1234",
+        "name": "Mirkomil",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:10:48.000Z",
+        "updatedAt": "2025-12-16T10:10:48.000Z"
+    },
+    {
+        "id": 11,
+        "email": "nico@gmail.com",
+        "password": "1234",
+        "name": "Nicolas",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:12:04.000Z",
+        "updatedAt": "2025-12-16T10:12:04.000Z"
+    },
+    {
+        "id": 12,
+        "email": "nico@gmail.com",
+        "password": "1234",
+        "name": "Nicolas",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:17:31.000Z",
+        "updatedAt": "2025-12-16T10:17:31.000Z"
+    },
+    {
+        "id": 13,
+        "email": "nico@gmail.com",
+        "password": "1234",
+        "name": "Nicolas",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:18:19.000Z",
+        "updatedAt": "2025-12-16T10:18:19.000Z"
+    },
+    {
+        "id": 14,
+        "email": "nico@gmail.com",
+        "password": "1234",
+        "name": "Nicolas",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:19:33.000Z",
+        "updatedAt": "2025-12-16T10:19:33.000Z"
+    },
+    {
+        "id": 15,
+        "email": "sazzad@gmail.com",
+        "password": "12341234",
+        "name": "Sazzad",
+        "role": "customer",
+        "avatar": "https://i.pravatar.cc/300",
+        "creationAt": "2025-12-16T10:25:07.000Z",
+        "updatedAt": "2025-12-16T10:25:07.000Z"
+    },
+    {
+        "id": 16,
+        "email": "apeksharathod310@gmail.com",
+        "password": "1234",
+        "name": "Apeksha",
+        "role": "customer",
+        "avatar": "https://picsum.photos/800",
+        "creationAt": "2025-12-16T10:30:06.000Z",
+        "updatedAt": "2025-12-16T10:30:06.000Z"
+    },
+    {
+        "id": 17,
+        "email": "aaa@gmail.com",
+        "password": "qwerty123",
+        "name": "bbb",
+        "role": "customer",
+        "avatar": "https://corsproxy.io/?https%3A%2F%2Fapi.escuelajs.co%2Fapi%2Fv1%2Ffiles%2F70cb.gif",
+        "creationAt": "2025-12-16T10:42:31.000Z",
+        "updatedAt": "2025-12-16T11:20:47.000Z"
+    }
+]
