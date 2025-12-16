@@ -1,5 +1,6 @@
 const path = require('node:path');
 const fs = require('node:fs');
+const zlib = require('node:zlib');
 
 //#region Part1: Core Modules.
 
@@ -55,7 +56,7 @@ function readFileStream(filePath, chunkSize = 150)
 
 
 /**
- * a function that copies the data from the `sourcePath` file to the `destPath` file using streams 
+ * A function that copies the data from the `sourcePath` file to the `destPath` file using streams 
  * @param {string} sourcePath - Path of the source file that will be copied.
  * @param {string} destPath - Path of the destination file that will receive the copied data.
  * @returns {void}
@@ -128,13 +129,101 @@ function copyFileStream(sourcePath, destPath)
 //#region 3. Create a pipeline that reads a file, compresses it, and writes it to another file.
 
 
+/**
+ * A function that pipes the data to a new `.gz` compressed file 
+ * in the same directory, without modifying the original file.
+ * using streams.
+ * @param {string} filePath - Path of the file you want to compress
+ */
+
 function compressFile(filePath)
 {
     const resolvedFilePath = path.resolve(filePath);
-    console.log(resolvedFilePath)
+    const resolvedCompressedPath = path.resolve(`${filePath}.gz`);
+
+    // console.log(resolvedFilePath);
+    // console.log(resolvedCompressedPath);
+
+    const readableFileStream = fs.createReadStream(resolvedFilePath, { encoding: "utf-8" });
+    const gzipFileStream = zlib.createGzip();
+    const writableCompressedStream = fs.createWriteStream(resolvedCompressedPath, { encoding: "utf-8" });
+
+
+    readableFileStream.pipe(gzipFileStream).pipe(writableCompressedStream);
+
+
+    //#region readableFile stream events (open, end, close, error)
+    readableFileStream.on("open", () =>
+    {
+        console.log(`Stream reading data from "${path.basename(resolvedFilePath)}" Opened`);
+    });
+
+    readableFileStream.on("end", () =>
+    {
+        console.log(`Stream reading data from "${path.basename(resolvedFilePath)}" Ended`);
+    });
+
+    readableFileStream.on("close", () =>
+    {
+        console.log(`Stream reading data "${path.basename(resolvedFilePath)}" Closed`);
+    });
+
+    readableFileStream.on("error", (error) =>
+    {
+        console.log(`Error on file "${path.basename(resolvedFilePath)}": `, error);
+    });
+    //#endregion
+
+
+    //#region writableCompressed stream events (open, finish, close, error)
+    writableCompressedStream.on("open", () =>
+    {
+        console.log(`Stream writing data to "${path.basename(resolvedCompressedPath)}" Opened`);
+    });
+
+    writableCompressedStream.on("finish", () =>
+    {
+        console.log(`Stream writing data to "${path.basename(resolvedCompressedPath)}" Finished`);
+    });
+
+    writableCompressedStream.on("close", () =>
+    {
+        console.log(`Stream writing data "${path.basename(resolvedCompressedPath)}" Closed`);
+    });
+
+    writableCompressedStream.on("error", (error) =>
+    {
+        console.log(`Error on file "${path.basename(resolvedCompressedPath)}": `, error);
+    });
+    //#endregion
+
+
+    //#region gzip stream events (finish, end, close, error)
+    gzipFileStream.on("finish", () =>
+    {
+        console.log(`gzip finished writing data from the readableStream "${path.basename(resolvedFilePath)}"`);
+    });
+
+    gzipFileStream.on("end", () =>
+    {
+        console.log(`gzip ended reading data to the writableStream "${path.basename(resolvedCompressedPath)}"`);
+    });
+
+    gzipFileStream.on("close", () =>
+    {
+        console.log(`Streaming gzip Closed`);
+    });
+
+    gzipFileStream.on("error", (error) =>
+    {
+        console.log(`Error on "gzipFileStream": `, error);
+    });
+    //#endregion
+
+
 }
 
-compressFile("./data.txt")
+// compressFile("data.txt");
 
 //#endregion 
 
