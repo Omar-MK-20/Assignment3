@@ -59,7 +59,6 @@ function readFileStream(filePath, chunkSize = 150)
  * A function that copies the data from the `sourcePath` file to the `destPath` file using streams 
  * @param {string} sourcePath - Path of the source file that will be copied.
  * @param {string} destPath - Path of the destination file that will receive the copied data.
- * @returns {void}
  */
 
 function copyFileStream(sourcePath, destPath)
@@ -225,7 +224,7 @@ function compressFile(filePath)
 
 // compressFile("data.txt");
 
-//#endregion 
+//#endregion
 
 
 //#endregion
@@ -238,12 +237,73 @@ function compressFile(filePath)
 //#region 1. What is the Node.js Event Loop?
 
 /**
- * 
+ * the event loop is the concept that makes the node.js handles many async operations despite having one thread.
+ * The event loop (using the main thread) handles this by offloading tasks to the system or the libuv and then
+ * executing the associated callback function
+ */
+
+//#endregion
+
+
+//#region 2. What is Libuv and What Role Does It Play in Node.js?
+
+/**
+ * Libuv is an open source library responsible for providing node.js with the implementation of event loop
+ * and thread pool.
+ * It manages the threads in the thread pool, runs heavy tasks, delegating the tasks to the
+ * system if needed.
  */
 
 
+//#endregion
 
 
+//#region 3. How Does Node.js Handle Asynchronous Operations Under the Hood?
+
+/**
+ * Async operations are delegated to the libuv or the OS. then after finished the callback functions are
+ * put in their perspective place in the event queue, after that they are handled by the event loop.
+ */
+
+//#endregion
+
+
+//#region 4. What is the Difference Between the Call Stack, Event Queue, and Event Loop in Node.js?
+
+/**
+ * The call stack is what executes the normal tasks (sync code).
+ * The event queue is whats stores the async code that is ready to be executed (setTimeout, I/O).
+ * The event loop checks for the async tasks to be moved to the call stack.
+ */
+
+//#endregion
+
+
+//#region 5. What is the Node.js Thread Pool and How to Set the Thread Pool Size?
+
+/**
+ * Thread pool is the number of the virtual threads in the libuv, and it is the responsible for executing
+ * heavy tasks like `crypto`.
+ * using `UV_THREADPOOL_SIZE`, default size is 4.
+ */
+
+
+//#endregion
+
+
+//#region 6. How Does Node.js Handle Blocking and Non-Blocking Code Execution?
+
+/**
+ * Blocking: stops the execution of the code, until the operation is completed.
+ * Non-Blocking: by offloading the task to an external library until it is done, then executing its callback
+ * function.
+ */
+
+
+//#endregion
+
+
+//#endregion
 
 
 
