@@ -233,3 +233,18 @@ function compressFile(filePath)
 
 
 
+// #region Part3: Node Internals.
+
+//#region 1. What is the Node.js Event Loop?
+
+/**
+ * 
+ */
+
+
+
+
+
+
+
+
