@@ -12,65 +12,39 @@ let port = 3000;
 const server = http.createServer((req, res) =>
 {
 
-    // //#region events
-    // res.on("finish", () =>
-    // {
-    //     console.log(`Response has been finished writing upon`);
-    // });
-
-    // res.on("close", () =>
-    // {
-    //     console.log(`Response closed`);
-    // });
-
-    // res.on("error", (error) =>
-    // {
-    //     console.log(`Response Error: `, error);
-    // });
-
-    // req.on("end", () =>
-    // {
-    //     console.log(`Request has been ended reading upon`);
-    // });
-
-    // req.on("close", () =>
-    // {
-    //     console.log(`Request closed`);
-    // });
-
-    // req.on("error", (error) =>
-    // {
-    //     console.log(`Request error: `, error);
-    // });
-    // //#endregion
-
     console.log("======================");
     console.log(`New request received`);
 
     const jsonContentType = "application/json";
-    const { url, method } = req;
-
 
     const addUserIsExecuted = addUser(req, res, jsonContentType);
+    console.log("🚀 ~ addUserIsExecuted:", addUserIsExecuted);
     if (addUserIsExecuted)
     { return; }
 
     const updateUserIsExecuted = updateUser(req, res, jsonContentType);
+    console.log("🚀 ~ updateUserIsExecuted:", updateUserIsExecuted);
     if (updateUserIsExecuted)
     { return; }
 
     const deleteUserIsExecuted = deleteUser(req, res, jsonContentType);
+    console.log("🚀 ~ deleteUserIsExecuted:", deleteUserIsExecuted);
     if (deleteUserIsExecuted)
     { return; }
 
     const getAllUsersIsExecuted = getAllUsers(req, res, jsonContentType);
+    console.log("🚀 ~ getAllUsersIsExecuted:", getAllUsersIsExecuted);
     if (getAllUsersIsExecuted)
     { return; }
 
+    const getSingleUserIsExecuted = getSingleUser(res, req, jsonContentType);
+    console.log("🚀 ~ getSingleUserIsExecuted:", getSingleUserIsExecuted);
+    if (getSingleUserIsExecuted)
+    { return; }
 
-    // res.writeHead(404, { "content-type": jsonContentType });
-    // res.write(errorReturn("Invalid Method or URL"));
-    // return res.end();
+    res.writeHead(404, { "content-type": jsonContentType });
+    res.write(errorReturn("Invalid Method or URL"));
+    return res.end();
 
 });
 
@@ -103,7 +77,6 @@ function addUser(req, res, contentType)
 
     if (url == "/user" && method == "POST")
     {
-        console.log("inside add user");
         let body = "";
         req.on("data", (chunk) =>
         {
@@ -118,8 +91,7 @@ function addUser(req, res, contentType)
             {
                 res.writeHead(400, { "content-type": contentType });
                 res.write(errorReturn("Data missing in request body"));
-                res.end();
-                return true;
+                return res.end();
             }
 
             const existUser = users.find(user => user.email == body.email);
@@ -128,8 +100,7 @@ function addUser(req, res, contentType)
             {
                 res.writeHead(409, { "content-type": contentType });
                 res.write(errorReturn("Email already exists."));
-                res.end();
-                return true;
+                return res.end();
             }
 
             users.push({ id: users[users.length - 1].id + 1, ...body });
@@ -137,9 +108,9 @@ function addUser(req, res, contentType)
 
             res.writeHead(201, { "content-type": contentType });
             res.write(successReturn("User added successfully."));
-            res.end();
-            return true;
+            return res.end();
         });
+        return true;
     }
 }
 
@@ -153,7 +124,6 @@ function updateUser(req, res, contentType)
 
     if (url.includes("/user") && method == "PATCH")
     {
-        console.log("inside update user");
 
         const id = url.split('/')[2];
 
@@ -183,21 +153,18 @@ function updateUser(req, res, contentType)
             {
                 res.writeHead(400, { "content-type": contentType });
                 res.write(errorReturnReturn("Missing age property"));
-                res.end();
-                return true;
+                return res.end();
             }
 
             user.age = body.age;
 
-            console.log(body);
             fs.writeFileSync(usersFilePath, JSON.stringify(users));
 
             res.writeHead(200, { "content-type": contentType });
             res.write(successReturn("User age updated successfully."));
-            res.end();
-            return true;
-
+            return res.end();
         });
+        return true;
     }
 }
 
@@ -211,7 +178,6 @@ function deleteUser(req, res, contentType)
 
     if (url.includes("/user") && method == "DELETE")
     {
-        console.log("inside delete user");
 
         const id = url.split('/')[2];
 
@@ -251,8 +217,6 @@ function getAllUsers(req, res, contentType)
     if (url == "/user" && method == "GET")
     {
 
-        console.log("inside get all users");
-
         res.writeHead(200, { "content-type": contentType });
         res.write(JSON.stringify(users));
         res.end();
@@ -261,6 +225,44 @@ function getAllUsers(req, res, contentType)
 }
 
 //#endregion
+
+//#region 5. Create an API that gets User by ID.
+
+function getSingleUser(res, req, contentType)
+{
+    const { url, method } = req;
+
+    if (url.includes("/user") && method == "GET")
+    {
+        const id = url.split("/")[2];
+
+        const user = users.find(user => user.id == id);
+
+        if (!user)
+        {
+            res.writeHead(404, { "content-type": contentType });
+            res.write(errorReturn("User not found."));
+            res.end();
+            return true;
+        }
+
+        res.writeHead(200, { "content-type": contentType });
+        res.write(JSON.stringify(user));
+        res.end();
+        return true;
+    }
+}
+
+
+
+
+
+//#endregion
+
+
+
+
+
 
 
 // ============================================================================
