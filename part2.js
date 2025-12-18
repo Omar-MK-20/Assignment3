@@ -11,6 +11,37 @@ const users = JSON.parse(fs.readFileSync(usersFilePath));
 let port = 3000;
 const server = http.createServer((req, res) =>
 {
+    //#region events
+    res.on("finish", () =>
+    {
+        console.log(`Response has been finished writing upon`);
+    });
+
+    res.on("close", () =>
+    {
+        console.log(`Response closed`);
+    });
+
+    res.on("error", (error) =>
+    {
+        console.log(`Response Error: `, error);
+    });
+
+    req.on("end", () =>
+    {
+        console.log(`Request has been ended reading upon`);
+    });
+
+    req.on("close", () =>
+    {
+        console.log(`Request closed`);
+    });
+
+    req.on("error", (error) =>
+    {
+        console.log(`Request error: `, error);
+    });
+    //#endregion
 
     console.log("======================");
     console.log(`New request received`);
