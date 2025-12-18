@@ -264,7 +264,6 @@ function getSingleUser(res, req, contentType)
 
 
 
-
 // ============================================================================
 //#region helper functions
 
